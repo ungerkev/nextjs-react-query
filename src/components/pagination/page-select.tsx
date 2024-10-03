@@ -9,12 +9,11 @@ type Props = {
   totalPages: number;
   page: number;
   setPage: (page: number) => void;
-  disabled?: boolean;
 };
 
-const PageSelect = ({ page, setPage, totalPages, disabled = false }: Props) => {
+const PageSelect = ({ page, setPage, totalPages }: Props) => {
   return (
-    <Select disabled={totalPages <= 1 || disabled} value={`${page}`} onValueChange={(page) => setPage(Number(page))}>
+    <Select disabled={totalPages <= 1} value={`${page}`} onValueChange={(page) => setPage(Number(page))}>
       <div className="relative">
         <Label className="text-xs absolute -bottom-4 left-0 text-muted-foreground">Select Page</Label>
         <SelectTrigger className="w-[65px] flex gap-1 bg-background">{`${page}`}</SelectTrigger>

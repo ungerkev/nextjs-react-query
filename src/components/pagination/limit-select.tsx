@@ -8,12 +8,11 @@ import { Label } from "../ui/label";
 
 type Props = {
   limit: number;
-  disabled?: boolean;
   setPage: (page: number) => void;
   setLimit: (limit: number) => void;
 };
 
-const LimitSelect = ({ limit, setPage, setLimit, disabled = false }: Props) => {
+const LimitSelect = ({ limit, setPage, setLimit }: Props) => {
   const onChangeLimit = (limit: string) => {
     const newLimit = Number(limit);
     setPage(1);
@@ -21,7 +20,7 @@ const LimitSelect = ({ limit, setPage, setLimit, disabled = false }: Props) => {
   };
 
   return (
-    <Select disabled={disabled} value={`${limit}`} onValueChange={(limit) => onChangeLimit(limit)}>
+    <Select value={`${limit}`} onValueChange={(limit) => onChangeLimit(limit)}>
       <div className="relative">
         <Label className="text-xs absolute -bottom-4 left-0 text-muted-foreground">Select Limit</Label>
         <SelectTrigger className="w-[65px]" value={DEFAULT_LIMIT}>

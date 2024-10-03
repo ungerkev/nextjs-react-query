@@ -13,28 +13,27 @@ type Props = {
   limit: number;
   setPage: (page: number) => void;
   setLimit: (limit: number) => void;
-  disabled?: boolean;
 };
 
-const PaginationComponent = ({ page, limit, setPage, setLimit, totalPages, disabled = false }: Props) => {
+const PaginationComponent = ({ page, limit, setPage, setLimit, totalPages }: Props) => {
   return (
     <Pagination className="pb-1">
       <PaginationContent className="space-x-2">
-        <PaginationItem className={cn({ ["hover:cursor-not-allowed"]: page === 1 || disabled })}>
-          <Button onClick={() => setPage(page - 1)} disabled={page <= 1 || page > totalPages || disabled}>
+        <PaginationItem className={cn({ ["hover:cursor-not-allowed"]: page === 1 })}>
+          <Button onClick={() => setPage(page - 1)} disabled={page <= 1 || page > totalPages}>
             Previous
           </Button>
         </PaginationItem>
 
-        <PaginationItem className={cn({ ["hover:cursor-not-allowed"]: page === totalPages || disabled })}>
-          <Button onClick={() => setPage(page + 1)} disabled={page >= totalPages || disabled}>
+        <PaginationItem className={cn({ ["hover:cursor-not-allowed"]: page === totalPages })}>
+          <Button onClick={() => setPage(page + 1)} disabled={page >= totalPages}>
             Next
           </Button>
         </PaginationItem>
 
-        <PageSelect page={page} setPage={setPage} disabled={disabled} totalPages={totalPages} />
+        <PageSelect page={page} setPage={setPage} totalPages={totalPages} />
 
-        <LimitSelect limit={limit} setLimit={setLimit} setPage={setPage} disabled={disabled} />
+        <LimitSelect limit={limit} setLimit={setLimit} setPage={setPage} />
       </PaginationContent>
     </Pagination>
   );

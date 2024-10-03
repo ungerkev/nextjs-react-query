@@ -29,14 +29,7 @@ const Posts = () => {
 
       {(isLoading && !data?.data) || isFetching ? <PostsListSkeleton /> : <PostsList data={data?.data} />}
 
-      <PaginationComponent
-        page={page}
-        limit={limit}
-        setPage={setPage}
-        setLimit={setLimit}
-        totalPages={data?.meta.totalPages ?? 1}
-        disabled={isFetching || isLoading}
-      />
+      <PaginationComponent page={page} limit={limit} setPage={setPage} setLimit={setLimit} totalPages={data?.meta.totalPages ?? 1} />
     </div>
   );
 };
