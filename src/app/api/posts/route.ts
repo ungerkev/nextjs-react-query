@@ -1,6 +1,5 @@
 import { DEFAULT_LIMIT } from "@/config/limit";
 import { NextResponse } from "next/server";
-import { v4 as uuidv4 } from "uuid";
 
 const posts = [
   { title: "Post Title 1", subtitle: "Post Subtitle 1" },
@@ -27,12 +26,6 @@ const handler = async (req: Request) => {
   const endIndex = startIndex + limit;
 
   const paginatedPosts = posts.slice(startIndex, endIndex);
-
-  const foundRefetchedPost = posts.find((post) => post.title.includes("Refetch"));
-  if (!foundRefetchedPost) {
-    // add post to the first place in array
-    posts.unshift({ title: `Refetch-${uuidv4()}`, subtitle: "Refetched post" });
-  }
 
   return NextResponse.json({
     data: paginatedPosts,
